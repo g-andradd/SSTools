@@ -1,7 +1,5 @@
 package br.com.escola.modelo;
 
-import br.com.escola.modelo.*;
-
 import java.util.ArrayList;
 
 public class Turma {
@@ -9,7 +7,7 @@ public class Turma {
     private int id;
     private Serie serie;
     private Periodo periodo;
-    private ArrayList<Professor> nome;
+    private ArrayList<Professor> professores;
     private ArrayList<Aluno> alunos;
     private ArrayList<Materia> materias;
 
@@ -36,12 +34,12 @@ public class Turma {
         this.periodo = periodo;
     }
 
-    public ArrayList<Professor> getNome() {
-        return nome;
+    public ArrayList<Professor> getProfessores() {
+        return professores;
     }
 
-    public void setNome(ArrayList<Professor> nome) {
-        this.nome = nome;
+    public void setProfessores(ArrayList<Professor> professores) {
+        this.professores = professores;
     }
 
     public ArrayList<Aluno> getAlunos() {

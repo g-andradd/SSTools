@@ -1,18 +1,24 @@
 package br.com.escola.modelo;
 
-import br.com.escola.modelo.Funcionario;
-import br.com.escola.modelo.Materia;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Professor extends Funcionario {
 
     private Materia materia;
-    private ArrayList<Turma> turmas;
+    private List<Turma> turmas = new ArrayList<>();
 
     public Professor(String matricula, String senha, String nome, BigDecimal salario) {
         super(matricula, senha, nome, salario);
+    }
+
+    public void inserirMateria(Materia materia){
+        this.materia = materia;
+    }
+
+    public void inserirTurma(Turma turma){
+        this.turmas.add(turma);
     }
 
     public Materia getMateria() {
@@ -23,7 +29,7 @@ public class Professor extends Funcionario {
         this.materia = materia;
     }
 
-    public ArrayList<Turma> getTurmas() { return turmas; }
+    public List<Turma> getTurmas() { return turmas; }
 
-    public void setTurmas(ArrayList<Turma> turmas) { this.turmas = turmas; }
+    public void setTurmas(List<Turma> turmas) { this.turmas = turmas; }
 }

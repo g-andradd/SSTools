@@ -1,6 +1,6 @@
 package br.com.escola.teste;
 
-import br.com.escola.connection.ConnectionFactory;
+import br.com.escola.factory.ConnectionFactory;
 
 import java.sql.Connection;
 import java.sql.SQLException;

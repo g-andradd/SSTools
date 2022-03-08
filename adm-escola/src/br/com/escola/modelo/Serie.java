@@ -1,3 +1,5 @@
+package br.com.escola.modelo;
+
 public enum Serie {
 
     MATERNAL("Maternal"),

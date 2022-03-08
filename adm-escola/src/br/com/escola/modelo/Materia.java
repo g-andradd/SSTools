@@ -1,7 +1,10 @@
+package br.com.escola.modelo;
+
 import java.util.Date;
 
 public class Materia {
 
+    private int id;
     private String nome;
     private Date CargaHoraria;
 

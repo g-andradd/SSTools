@@ -1,7 +1,12 @@
+package br.com.escola.modelo;
+
+import br.com.escola.modelo.*;
+
 import java.util.ArrayList;
 
 public class Turma {
 
+    private int id;
     private Serie serie;
     private Periodo periodo;
     private ArrayList<Professor> nome;

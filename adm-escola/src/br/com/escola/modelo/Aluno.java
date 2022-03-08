@@ -1,4 +1,6 @@
-public class Aluno {
+package br.com.escola.modelo;
+
+public class Aluno{
 
     private int matricula;
     private String nome;
@@ -13,6 +15,7 @@ public class Aluno {
         this.nome = nome;
         this.serie = serie;
         this.periodo = periodo;
+        this.nota = 0;
 
         System.out.println("Você matriculou: " + this.matricula + " " + this.nome + " no " + this.serie.getDescricao() + " no período " + this.periodo);
 
@@ -56,9 +59,12 @@ public class Aluno {
 
     public void setNota(Float nota) { this.nota = nota; }
 
-
     public static int getTotal(){
         return Aluno.total;
     }
 
+    @Override
+    public String toString() {
+        return String.format("O aluno %d %s foi matriculado na série %s, no período %s", this.matricula, this.nome, this.serie, this.periodo);
+    }
 }

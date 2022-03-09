@@ -35,6 +35,6 @@ public class Professor extends Funcionario {
 
     @Override
     public String toString() {
-        return String.format("Professor %d %s Cadastrado!!", this.getMatricula(), this.getNome());
+        return String.format("Matrícula: %d, Nome: %s, Salário: %.2f R$", this.getMatricula(), this.getNome(), this.getSalario());
     }
 }

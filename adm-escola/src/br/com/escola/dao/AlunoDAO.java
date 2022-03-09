@@ -20,13 +20,14 @@ public class AlunoDAO {
     }
 
     public void matricular(Aluno aluno) throws SQLException {
-        connection.setAutoCommit(false);
+
 //        String sql = "INSERT INTO ALUNO (MATRICULA, NOME, SERIE, PERIODO) VALUES (?, ?, ?, ?)";
         StringBuffer sql = new StringBuffer("INSERT INTO ALUNO ");
         sql.append("(MATRICULA, NOME, SERIE, PERIODO) ");
         sql.append("VALUES (?, ?, ?, ?)");
 
         try (PreparedStatement pstm = connection.prepareStatement(String.valueOf(sql))) {
+            connection.setAutoCommit(false);
             pstm.setInt(1, aluno.getMatricula());
             pstm.setString(2, aluno.getNome());
             pstm.setString(3, aluno.getSerie().getDescricao());
@@ -46,14 +47,15 @@ public class AlunoDAO {
         List<Aluno> alunos = new ArrayList<>();
 
         StringBuffer sql = new StringBuffer("SELECT ID ID, NOME NOME, SERIE SERIE, PERIODO PERIODO ");
-        sql.append("FROM ALUNO ");
+        sql.append("FROM ALUNO");
 
 //        String sql = "SELECT MATRICULA MATRICULA, NOME NOME, SERIE SERIE, PERIODO PERIODO FROM ALUNO";
 
         try (PreparedStatement pstm = connection.prepareStatement(String.valueOf(sql))) {
             pstm.execute();
-            Aluno aluno = null;
+
             try (ResultSet rst = pstm.getResultSet()) {
+                Aluno aluno = null;
                 while (rst.next()) {
                     aluno = new Aluno(rst.getInt(1), rst.getString(2), Enum.valueOf(Serie.class, rst.getString(3)), Enum.valueOf(Periodo.class, rst.getString(3)));
                     alunos.add(aluno);

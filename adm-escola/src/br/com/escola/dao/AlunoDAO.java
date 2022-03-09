@@ -21,9 +21,12 @@ public class AlunoDAO {
 
     public void matricular(Aluno aluno) throws SQLException {
         connection.setAutoCommit(false);
-        String sql = "INSERT INTO ALUNO (MATRICULA, NOME, SERIE, PERIODO) VALUES (?, ?, ?, ?)";
+//        String sql = "INSERT INTO ALUNO (MATRICULA, NOME, SERIE, PERIODO) VALUES (?, ?, ?, ?)";
+        StringBuffer sql = new StringBuffer("INSERT INTO ALUNO ");
+        sql.append("(MATRICULA, NOME, SERIE, PERIODO) ");
+        sql.append("VALUES (?, ?, ?, ?)");
 
-        try (PreparedStatement pstm = connection.prepareStatement(sql)) {
+        try (PreparedStatement pstm = connection.prepareStatement(String.valueOf(sql))) {
             pstm.setInt(1, aluno.getMatricula());
             pstm.setString(2, aluno.getNome());
             pstm.setString(3, aluno.getSerie().getDescricao());
@@ -42,13 +45,12 @@ public class AlunoDAO {
     public List<Aluno> listar() {
         List<Aluno> alunos = new ArrayList<>();
 
-//        StringBuffer sql = new StringBuffer();
-//        sql.append("SELECT ID ID, NOME NOME, SERIE SERIE, PERIODO PERIODO");
-//        sql.append("FROM ALUNO");
+        StringBuffer sql = new StringBuffer("SELECT ID ID, NOME NOME, SERIE SERIE, PERIODO PERIODO ");
+        sql.append("FROM ALUNO ");
 
-        String sql = "SELECT MATRICULA MATRICULA, NOME NOME, SERIE SERIE, PERIODO PERIODO FROM ALUNO";
+//        String sql = "SELECT MATRICULA MATRICULA, NOME NOME, SERIE SERIE, PERIODO PERIODO FROM ALUNO";
 
-        try (PreparedStatement pstm = connection.prepareStatement(sql)) {
+        try (PreparedStatement pstm = connection.prepareStatement(String.valueOf(sql))) {
             pstm.execute();
             Aluno aluno = null;
             try (ResultSet rst = pstm.getResultSet()) {

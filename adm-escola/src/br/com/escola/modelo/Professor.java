@@ -9,7 +9,7 @@ public class Professor extends Funcionario {
     private Materia materia;
     private List<Turma> turmas = new ArrayList<>();
 
-    public Professor(String matricula, String senha, String nome, BigDecimal salario) {
+    public Professor(Integer matricula, String senha, String nome, BigDecimal salario) {
         super(matricula, senha, nome, salario);
     }
 
@@ -32,4 +32,9 @@ public class Professor extends Funcionario {
     public List<Turma> getTurmas() { return turmas; }
 
     public void setTurmas(List<Turma> turmas) { this.turmas = turmas; }
+
+    @Override
+    public String toString() {
+        return String.format("Professor %d %s Cadastrado!!", this.getMatricula(), this.getNome());
+    }
 }

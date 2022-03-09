@@ -1,8 +1,6 @@
 package br.com.escola.dao;
 
 import br.com.escola.modelo.Aluno;
-import br.com.escola.modelo.Periodo;
-import br.com.escola.modelo.Serie;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,21 +18,18 @@ public class AlunoDAO {
     }
 
     public void matricular(Aluno aluno) throws SQLException {
-
-//        String sql = "INSERT INTO ALUNO (MATRICULA, NOME, SERIE, PERIODO) VALUES (?, ?, ?, ?)";
         StringBuffer sql = new StringBuffer("INSERT INTO ALUNO ");
-        sql.append("(MATRICULA, NOME, SERIE, PERIODO) ");
-        sql.append("VALUES (?, ?, ?, ?)");
+        sql.append("(MATRICULA, NOME) ");
+        sql.append("VALUES (?, ?)");
 
         try (PreparedStatement pstm = connection.prepareStatement(String.valueOf(sql))) {
             connection.setAutoCommit(false);
             pstm.setInt(1, aluno.getMatricula());
             pstm.setString(2, aluno.getNome());
-            pstm.setString(3, aluno.getSerie().getDescricao());
-            pstm.setString(4, aluno.getPeriodo().getDescricao());
 
             pstm.execute();
             connection.commit();
+            System.out.println("Aluno Matriculado com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Rollback foi executado");
@@ -46,10 +41,8 @@ public class AlunoDAO {
     public List<Aluno> listar() {
         List<Aluno> alunos = new ArrayList<>();
 
-        StringBuffer sql = new StringBuffer("SELECT ID ID, NOME NOME, SERIE SERIE, PERIODO PERIODO ");
+        StringBuffer sql = new StringBuffer("SELECT MATRICULA MATRICULA, NOME NOME ");
         sql.append("FROM ALUNO");
-
-//        String sql = "SELECT MATRICULA MATRICULA, NOME NOME, SERIE SERIE, PERIODO PERIODO FROM ALUNO";
 
         try (PreparedStatement pstm = connection.prepareStatement(String.valueOf(sql))) {
             pstm.execute();
@@ -57,14 +50,35 @@ public class AlunoDAO {
             try (ResultSet rst = pstm.getResultSet()) {
                 Aluno aluno = null;
                 while (rst.next()) {
-                    aluno = new Aluno(rst.getInt(1), rst.getString(2), Enum.valueOf(Serie.class, rst.getString(3)), Enum.valueOf(Periodo.class, rst.getString(3)));
+                    aluno = new Aluno(rst.getInt(1), rst.getString(2));
                     alunos.add(aluno);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Erro ao listar o aluno!");
         }
         return alunos;
     }
 
+    public void deletarPorMatricula(int alunoMatricula) throws SQLException {
+        StringBuffer sql = new StringBuffer("DELETE FROM ");
+        sql.append("ALUNO ");
+        sql.append("WHERE ");
+        sql.append("MATRICULA = ?");
+
+        try(PreparedStatement pstm = connection.prepareStatement(String.valueOf(sql))){
+            connection.setAutoCommit(false);
+            pstm.setInt(1, alunoMatricula);
+
+            pstm.execute();
+            connection.commit();
+            System.out.println("Aluno excluído com sucesso!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            connection.rollback();
+            System.out.println("Erro ao deletar o aluno!!");
+
+        }
+    }
 }

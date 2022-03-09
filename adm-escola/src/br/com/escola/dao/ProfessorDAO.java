@@ -18,7 +18,6 @@ public class ProfessorDAO {
     }
 
     public void cadastrar(Professor professor) {
-//        String sql = "INSERT INTO PROFESSOR(MATRICULA, SENHA, NOME, SALARIO) VALUES (?, ?, ?, ?)";
         StringBuffer sql = new StringBuffer("INSERT INTO PROFESSOR");
         sql.append("(MATRICULA, SENHA, NOME, SALARIO) ");
         sql.append("VALUES (?, ?, ?, ?)");

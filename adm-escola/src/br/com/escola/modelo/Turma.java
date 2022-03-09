@@ -1,22 +1,26 @@
 package br.com.escola.modelo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Turma {
 
-    private int id;
+    private Integer id;
     private Serie serie;
     private Periodo periodo;
-    private ArrayList<Professor> professores;
-    private ArrayList<Aluno> alunos;
-    private ArrayList<Materia> materias;
+    private List<Professor> professores = new ArrayList<>();
+    private List<Aluno> alunos = new ArrayList<>();
+    private List<Materia> materias = new ArrayList<>();
 
-    public Turma(Serie serie, Periodo periodo, ArrayList<Aluno> alunos, ArrayList<Materia> materias) {
+    public Turma(Integer id, Serie serie, Periodo periodo) {
+        this.id = id;
         this.serie = serie;
         this.periodo = periodo;
-        this.alunos = alunos;
-        this.materias = materias;
     }
+
+    public Integer getId() { return id; }
+
+    public void setId(Integer id) { this.id = id; }
 
     public Serie getSerie() {
         return serie;
@@ -34,27 +38,32 @@ public class Turma {
         this.periodo = periodo;
     }
 
-    public ArrayList<Professor> getProfessores() {
+    public List<Professor> getProfessores() {
         return professores;
     }
 
-    public void setProfessores(ArrayList<Professor> professores) {
+    public void setProfessores(List<Professor> professores) {
         this.professores = professores;
     }
 
-    public ArrayList<Aluno> getAlunos() {
+    public List<Aluno> getAlunos() {
         return alunos;
     }
 
-    public void setAlunos(ArrayList<Aluno> alunos) {
+    public void setAlunos(List<Aluno> alunos) {
         this.alunos = alunos;
     }
 
-    public ArrayList<Materia> getMaterias() {
+    public List<Materia> getMaterias() {
         return materias;
     }
 
-    public void setMaterias(ArrayList<Materia> materias) {
+    public void setMaterias(List<Materia> materias) {
         this.materias = materias;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Turma -- id: %d, Série: %s, Período: %s", this.getId(), this.getSerie(), this.getPeriodo());
     }
 }

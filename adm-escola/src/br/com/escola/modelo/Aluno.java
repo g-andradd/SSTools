@@ -4,21 +4,14 @@ public class Aluno{
 
     private int matricula;
     private String nome;
-    private Serie serie;
-    private Periodo periodo;
     private float nota;
     private static int total = 0;
 
-    public Aluno(int matricula, String nome, Serie serie, Periodo periodo){
+    public Aluno(int matricula, String nome){
         Aluno.total++;
         this.matricula = matricula;
         this.nome = nome;
-        this.serie = serie;
-        this.periodo = periodo;
         this.nota = 0;
-
-        System.out.println("Você matriculou: " + this.matricula + " " + this.nome + " no " + this.serie+ " no período " + this.periodo);
-
     }
 
     public int getMatricula() {
@@ -37,18 +30,6 @@ public class Aluno{
         this.nome = nome;
     }
 
-    public Serie getSerie() {
-        return serie;
-    }
-
-    public void setSerie(Serie serie) { this.serie = serie;}
-
-    public Periodo getPeriodo() {
-        return periodo;
-    }
-
-    public void setPeriodo(Periodo periodo) { this.periodo = periodo; }
-
     public Float getNota() {
         return nota;
     }
@@ -61,6 +42,6 @@ public class Aluno{
 
     @Override
     public String toString() {
-            return String.format("O ALUNO MATRICULADO FOI: %d %s no %s %s", this.matricula, this.nome, this.serie.getDescricao(), this.periodo.getDescricao());
+            return String.format("Aluno -- Matrícula: %d Nome: %s", this.matricula, this.nome);
     }
 }

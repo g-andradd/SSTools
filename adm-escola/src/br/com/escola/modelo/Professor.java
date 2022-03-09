@@ -6,32 +6,32 @@ import java.util.List;
 
 public class Professor extends Funcionario {
 
-    private Materia materia;
-    private List<Turma> turmas = new ArrayList<>();
+    private Materia idMateria;
+    private List<Turma> idTurmas = new ArrayList<>();
 
     public Professor(Integer matricula, String senha, String nome, BigDecimal salario) {
         super(matricula, senha, nome, salario);
     }
 
     public void inserirMateria(Materia materia){
-        this.materia = materia;
+        this.idMateria = materia;
     }
 
     public void inserirTurma(Turma turma){
-        this.turmas.add(turma);
+        this.idTurmas.add(turma);
     }
 
-    public Materia getMateria() {
-        return materia;
+    public Materia getIdMateria() {
+        return idMateria;
     }
 
-    public void setMateria(Materia materia) {
-        this.materia = materia;
+    public void setIdMateria(Materia idMateria) {
+        this.idMateria = idMateria;
     }
 
-    public List<Turma> getTurmas() { return turmas; }
+    public List<Turma> getIdTurmas() { return idTurmas; }
 
-    public void setTurmas(List<Turma> turmas) { this.turmas = turmas; }
+    public void setIdTurmas(List<Turma> idTurmas) { this.idTurmas = idTurmas; }
 
     @Override
     public String toString() {

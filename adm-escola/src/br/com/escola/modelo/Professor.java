@@ -1,37 +1,22 @@
 package br.com.escola.modelo;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Professor extends Funcionario {
 
-    private Materia idMateria;
-    private List<Turma> idTurmas = new ArrayList<>();
+    private Integer idMateria;
 
     public Professor(Integer matricula, String senha, String nome, BigDecimal salario) {
         super(matricula, senha, nome, salario);
     }
 
-    public void inserirMateria(Materia materia){
-        this.idMateria = materia;
-    }
-
-    public void inserirTurma(Turma turma){
-        this.idTurmas.add(turma);
-    }
-
-    public Materia getIdMateria() {
+    public Integer getIdMateria() {
         return idMateria;
     }
 
-    public void setIdMateria(Materia idMateria) {
+    public void setIdMateria(Integer idMateria) {
         this.idMateria = idMateria;
     }
-
-    public List<Turma> getIdTurmas() { return idTurmas; }
-
-    public void setIdTurmas(List<Turma> idTurmas) { this.idTurmas = idTurmas; }
 
     @Override
     public String toString() {

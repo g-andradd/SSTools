@@ -1,17 +1,21 @@
 package br.com.escola.modelo;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Aluno{
 
     private int matricula;
     private String nome;
-    private float nota;
+    private List<BigDecimal> nota = new ArrayList<>();
+    private int idTurma;
     private static int total = 0;
 
-    public Aluno(int matricula, String nome){
+    public Aluno(int matricula, String nome) {
         Aluno.total++;
         this.matricula = matricula;
         this.nome = nome;
-        this.nota = 0;
     }
 
     public int getMatricula() {
@@ -30,14 +34,22 @@ public class Aluno{
         this.nome = nome;
     }
 
-    public Float getNota() {
+    public List<BigDecimal> getNota() {
         return nota;
     }
 
-    public void setNota(Float nota) { this.nota = nota; }
+    public void setNota(List<BigDecimal> nota) { this.nota = nota; }
 
     public static int getTotal(){
         return Aluno.total;
+    }
+
+    public int getIdTurma(){
+        return idTurma;
+    }
+
+    public void setIdTurma(int idTurma){
+        this.idTurma = idTurma;
     }
 
     @Override
